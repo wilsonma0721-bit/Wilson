@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="以系統工程與數據化管理規劃大學四年的個人成長控制台" />
+  
+  <title>我的大學生涯｜成長控制台</title>
+  <style>
+    :root { --ink:#1f2933; --muted:#66717d; --line:#dfe5e8; --paper:#fbfcfc; --panel:#fff; --accent:#365e64; --soft:#edf4f3; --warm:#f4f0e9; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.7 -apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif; }
+    .wrap { width:min(1080px, calc(100% - 40px)); margin:auto; }
+    nav { height:68px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+    .brand { font-weight:750; letter-spacing:.03em; }
+    nav ul { display:flex; gap:22px; padding:0; margin:0; list-style:none; font-size:.9rem; }
+    a { color:inherit; text-decoration:none; }
+    nav a { color:var(--muted); } nav a:hover { color:var(--accent); }
+    .hero { display:grid; grid-template-columns:1.2fr .8fr; gap:70px; padding:86px 0 72px; align-items:end; }
+    .eyebrow { color:var(--accent); font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { margin:10px 0 22px; max-width:680px; font-size:clamp(2.3rem,5vw,4.5rem); line-height:1.13; letter-spacing:-.045em; }
+    h2 { margin:0 0 22px; font-size:1.65rem; letter-spacing:-.025em; }
+    h3 { margin:0 0 8px; font-size:1.05rem; }
+    .lead { max-width:630px; margin:0; color:var(--muted); font-size:1.08rem; }
+    .quote { border-left:3px solid var(--accent); padding:4px 0 4px 20px; color:#4b545d; font-size:1rem; }
+    .quote p { margin:0; }
+    section { padding:76px 0; border-top:1px solid var(--line); }
+    .section-intro { max-width:650px; color:var(--muted); margin:0 0 34px; }
+    .principles { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .principle { padding:25px; border:1px solid var(--line); background:var(--panel); }
+    .num { color:var(--accent); font:700 .78rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.12em; }
+    .principle p { margin:0; color:var(--muted); font-size:.93rem; }
+    
+    /* 四年藍圖頂部雙欄配置 */
+    .blueprint-header { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:34px; flex-wrap:wrap; }
+    .doc-callout { background:var(--soft); border:2px solid var(--accent); border-radius:10px; padding:16px 22px; box-shadow:0 6px 20px rgba(54,94,100,0.12); display:inline-flex; align-items:center; gap:18px; }
+    .doc-callout-info { border-left:3px solid var(--accent); padding-left:12px; }
+    .doc-callout-btn { display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:#fff; padding:9px 16px; border-radius:6px; font-weight:600; font-size:0.88rem; text-decoration:none; transition:opacity 0.2s; }
+    .doc-callout-btn:hover { opacity:0.9; color:#fff; }
+    
+    .timeline { display:grid; grid-template-columns:repeat(4,1fr); border-top:2px solid var(--accent); }
+    .year { position:relative; padding:25px 22px 0 0; min-height:210px; border-right:1px solid var(--line); }
+    .year:not(:first-child) { padding-left:22px; }
+    .year:last-child { border-right:0; }
+    .year::before { content:""; position:absolute; top:-7px; left:0; width:12px; height:12px; border-radius:50%; background:var(--accent); }
+    .year strong { display:block; margin-bottom:9px; font-size:1.05rem; }
+    .year p { margin:0; color:var(--muted); font-size:.9rem; }
+    .smart { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+    .smart article { min-height:220px; padding:23px 19px; background:var(--panel); }
+    .smart .letter { display:block; margin-bottom:17px; color:var(--accent); font:700 2rem/1 Georgia,serif; }
+    .smart p { margin:0; color:var(--muted); font-size:.88rem; }
+    .dashboard { display:grid; grid-template-columns:.9fr 1.1fr; gap:22px; }
+    .dashboard-copy { padding:29px; background:var(--soft); }
+    .dashboard-copy p { margin:0; color:#4f6162; }
+    .metrics { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+    .metric { padding:21px; background:var(--panel); }
+    .metric small { display:block; color:var(--muted); }
+    .metric output { display:block; margin-top:6px; color:var(--accent); font:700 2rem/1.1 Georgia,serif; }
+    .metric label { display:block; margin-top:13px; font-size:.77rem; color:var(--muted); }
+    input[type=range] { width:100%; accent-color:var(--accent); }
+    .note { margin-top:16px; color:var(--muted); font-size:.8rem; }
+    .closing { padding:92px 0; text-align:center; background:var(--warm); }
+    .closing h2 { max-width:690px; margin:0 auto 14px; font-size:clamp(1.8rem,4vw,2.8rem); }
+    .closing p { margin:0 auto; max-width:580px; color:var(--muted); }
+    footer { padding:20px 0; color:var(--muted); font-size:.78rem; text-align:center; }
+    @media (max-width:760px) { 
+      .hero,.dashboard { grid-template-columns:1fr; gap:32px; padding:56px 0; } 
+      .principles { grid-template-columns:1fr; } 
+      .timeline { grid-template-columns:1fr; border-top:0; } 
+      .year,.year:not(:first-child) { min-height:auto; padding:15px 0 20px 22px; border:0; border-left:1px solid var(--line); } 
+      .year::before { top:18px; left:-7px; } 
+      .smart { grid-template-columns:1fr; } 
+      .smart article { min-height:0; } 
+      nav ul { display:none; } 
+      section { padding:54px 0; }
+      .blueprint-header { flex-direction:column; align-items:flex-start; }
+      .doc-callout { width:100%; justify-content:space-between; box-sizing:border-box; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav aria-label="主要導覽">
+      <a class="brand" href="#top">我的大學生涯規劃</a>
+      <ul>
+        <li><a href="#blueprint">四年藍圖</a></li>
+        <li><a href="#smart">SMART 目標</a></li>
+        <li><a href="#dashboard">生活儀表板</a></li>
+        <li><a href="Study Plan.pdf" target="_blank" rel="noopener noreferrer">Study Plan ↗</a></li>
+      </ul>
+    </nav>
+
+    <main id="top">
+      <header class="hero">
+        <div>
+          <div class="eyebrow">University Growth System · 2026–2030</div>
+          <h1>把大學四年，設計成一套可持續成長的系統。</h1>
+          <p class="lead">我不只是知識的接收者，也是個人發展系統的架構師。透過系統工程思維、資訊管理與定期回顧，讓每一步學習都朝向更完整的自己。</p>
+        </div>
+        <div class="quote"><p>「邏輯為磚，演算為瓦，在數據的洪流中築起知識之塔；暫借仲夏的留白，讓思緒如源碼般重組，在秋日重新執行生命的迴圈。」</p></div>
+      </header>
+
+      <section>
+        <div class="eyebrow">設計原則</div>
+        <h2>學習不是衝刺，而是不斷疊代與除錯。</h2>
+        <p class="section-intro">誠實辨識初始條件、建立回饋機制，並在學術、健康與關係之間維持動態平衡。</p>
+        <div class="principles">
+          <article class="principle"><span class="num">01 / ARCHITECT</span><h3>成為架構師</h3><p>主動規劃四年路徑，將課程、能力與生活節奏整合為一套個人系統。</p></article>
+          <article class="principle"><span class="num">02 / ITERATE</span><h3>在回饋中調整</h3><p>把每次挑戰視為除錯：找出不足、補強基礎，再以更好的版本前進。</p></article>
+          <article class="principle"><span class="num">03 / BALANCE</span><h3>保留系統餘裕</h3><p>學術硬實力與身心社靈並重；留白不是停滯，而是可持續輸出的條件。</p></article>
+        </div>
+      </section>
+
+      <section id="blueprint">
+        <div class="blueprint-header">
+          <div>
+            <div class="eyebrow">四年學習藍圖</div>
+            <h2 style="margin: 6px 0 0;">先穩定基礎，再建立跨域能力。</h2>
+          </div>
+          <!-- 顯眼的 Study Plan 方塊 -->
+          <div class="doc-callout">
+            <div class="doc-callout-info">
+              <span style="display:block; font-size:0.72rem; font-weight:700; letter-spacing:0.1em; color:var(--accent); text-transform:uppercase;">Official Document</span>
+              <strong style="display:block; font-size:1.05rem; color:var(--ink); margin-top:2px;">Study Plan</strong>
+            </div>
+            <a href="Study Plan.pdf" target="_blank" rel="noopener noreferrer" class="doc-callout-btn">
+              <span>開啟 Study Plan</span>
+              <span style="font-size:1rem; line-height:1;">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="year"><strong>第一年｜打底</strong><p>第一學期鞏固基礎數學與邏輯；第二學期銜接程式設計入門，同步認識商業資訊系統。</p></article>
+          <article class="year"><strong>第二年｜連結</strong><p>深化資訊系統與程式邏輯，練習把資料、流程與商業問題串接成可用的解法。</p></article>
+          <article class="year"><strong>第三年｜整合</strong><p>以系統工程與副修課程拓展視角，將繁重學分平均安排在常規學期。</p></article>
+          <article class="year"><strong>第四年｜應用</strong><p>完成跨領域作品與個人方法論，準備把自動化管理思維帶入工作與生活。</p></article>
+        </div>
+        <p class="note">暑期刻意留白：用於自我探索、興趣培養與休養，讓下一輪學習重新校準。</p>
+      </section>
+
+      <section id="smart">
+        <div class="eyebrow">SMART 目標設定</div>
+        <h2>一個可追蹤，也容許調整的執行框架。</h2>
+        <div class="smart">
+          <article><span class="letter">S</span><h3>具體清晰</h3><p>首年先修基礎數學，再銜接程式設計與商業資訊系統。</p></article>
+          <article><span class="letter">M</span><h3>評估有度</h3><p>以試算表與資料庫概念建立儀表板，記錄學習、運動與社交。</p></article>
+          <article><span class="letter">A</span><h3>切實可行</h3><p>均衡分配四年學分，不以壓縮暑期換取短暫效率。</p></article>
+          <article><span class="letter">R</span><h3>實事求是</h3><p>從基礎課程建立數學、邏輯與運算能力，穩步累積自信。</p></article>
+          <article><span class="letter">T</span><h3>時間分期</h3><p>首年過渡、中期跨域、畢業前形成可自動化管理生活與工作的思維。</p></article>
+        </div>
+      </section>
+
+      <section id="dashboard">
+        <div class="eyebrow">每週生活儀表板</div>
+        <h2>用數據看見平衡，而非只追逐分數。</h2>
+        <div class="dashboard">
+          <div class="dashboard-copy"><h3>本週檢視</h3><p>這份儀表板不是評分工具，而是一個溫和的提醒：當某一面向長期失衡時，系統需要被重新安排。拖曳右側控制列，模擬本週投入與狀態。</p></div>
+          <div class="metrics">
+            <div class="metric"><small>自主學習</small><output id="studyOut">12 小時</output><label>每週時數 <input data-unit="小時" data-target="studyOut" type="range" min="0" max="30" value="12"></label></div>
+            <div class="metric"><small>運動次數</small><output id="exerciseOut">3 次</output><label>每週次數 <input data-unit="次" data-target="exerciseOut" type="range" min="0" max="7" value="3"></label></div>
+            <div class="metric"><small>社交活動</small><output id="socialOut">2 次</output><label>每週次數 <input data-unit="次" data-target="socialOut" type="range" min="0" max="7" value="2"></label></div>
+            <div class="metric"><small>睡眠平均</small><output id="sleepOut">7.5 小時</output><label>每日時數 <input data-unit="小時" data-target="sleepOut" type="range" min="4" max="10" step="0.5" value="7.5"></label></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <section class="closing"><div class="wrap"><h2>不是把行程排滿，而是讓人生能長久地運行。</h2><p>以清晰的目標起步，以數據定期回顧；在需要時除錯、留白、重新執行。</p></div></section>
+  <footer>Personal Growth System · A four-year university blueprint</footer>
+  <script>
+    document.querySelectorAll('input[type="range"]').forEach(input => input.addEventListener('input', () => {
+      document.getElementById(input.dataset.target).textContent = `${input.value} ${input.dataset.unit}`;
+    }));
+  </script>
+</body>
+</html>
