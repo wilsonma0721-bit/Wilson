@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="大學生涯中的個人成長" />
+  <title>我的大學生涯————止於至善</title>
+  <style>
+    :root { --ink:#202a31; --muted:#68757d; --line:#dce3e5; --paper:#fbfcfc; --panel:#ffffff; --accent:#345e63; --accent-dark:#284a4e; --soft:#edf4f3; --warm:#f5f1e9; --light-ink:#eaf2f1; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.72 -apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(1100px, calc(100% - 40px)); margin:auto; }
+    nav { min-height:70px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+    .brand { font-size:.98rem; font-weight:760; letter-spacing:.04em; }
+    nav ul { display:flex; gap:22px; padding:0; margin:0; list-style:none; font-size:.86rem; }
+    nav a:not(.brand) { color:var(--muted); } nav a:hover { color:var(--accent); }
+    .hero { display:grid; grid-template-columns:1.22fr .78fr; gap:58px; padding:84px 0 74px; align-items:end; }
+    .eyebrow { color:var(--accent); font-size:.76rem; font-weight:750; letter-spacing:.15em; text-transform:uppercase; }
+    h1,h2,h3,p { margin-top:0; } h1 { max-width:720px; margin-bottom:20px; font-size:clamp(2.45rem,5.2vw,4.65rem); line-height:1.12; letter-spacing:-.055em; }
+    h2 { margin-bottom:15px; font-size:clamp(1.55rem,3vw,2.05rem); line-height:1.3; letter-spacing:-.03em; }
+    h3 { margin-bottom:8px; font-size:1.04rem; line-height:1.45; }
+    .lead { max-width:690px; margin-bottom:0; color:var(--muted); font-size:1.08rem; }
+    .hero-note { padding:24px 0 22px 21px; border-left:3px solid var(--accent); color:#45535a; }
+    .hero-note p { margin-bottom:12px; } .hero-note p:last-child { margin:0; font-size:.81rem; color:var(--muted); }
+    section { padding:74px 0; border-top:1px solid var(--line); }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:34px; }
+    .section-intro { max-width:690px; margin:0; color:var(--muted); }
+    .control-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .statement { padding:28px; border:1px solid var(--line); background:var(--panel); }
+    .statement .label,.reflection .label { display:block; margin-bottom:16px; color:var(--accent); font:700 .72rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.13em; }
+    .statement p { margin:0; color:#506069; }
+    .mission { background:var(--soft); border-color:transparent; }
+    .university-grid { display:grid; grid-template-columns:1.08fr .92fr; gap:22px; margin-top:22px; }
+    .university-copy { padding:30px; background:var(--warm); }
+    .university-copy p { margin:0; color:#5f625f; }
+    .idea-list { border-top:1px solid var(--line); }
+    .idea { display:grid; grid-template-columns:42px 1fr; gap:13px; padding:17px 0; border-bottom:1px solid var(--line); }
+    .idea span { color:var(--accent); font:700 .8rem/1.7 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .idea p { margin:0; color:var(--muted); font-size:.91rem; }
+    .reflection-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:22px; }
+    .reflection { padding:26px; border-top:2px solid var(--accent); background:var(--panel); }
+    .reflection p { margin:0; color:var(--muted); font-size:.93rem; }
+    .goals { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; border:1px solid var(--line); background:var(--line); }
+    .goal { min-height:205px; padding:24px 22px; background:var(--panel); }
+    .goal-mark { display:block; margin-bottom:15px; color:var(--accent); font:700 1.9rem/1 Georgia,serif; }
+    .goal p { margin:0; color:var(--muted); font-size:.89rem; }
+    
+    /* 儀表板佈局 */
+    .dashboard-layout { display:grid; grid-template-columns:.75fr 1.25fr; gap:22px; margin-top:22px; }
+    .pdf-panel { display:flex; flex-direction:column; justify-content:space-between; min-height:285px; padding:29px; color:var(--light-ink); background:var(--accent-dark); border-radius:4px; }
+    .pdf-panel .eyebrow { color:#bcd2cf; } .pdf-panel h3 { margin:12px 0; color:#fff; font-size:1.45rem; }
+    .pdf-panel p { color:#d0dfdd; font-size:.92rem; }
+    .pdf-button { display:inline-flex; align-items:center; justify-content:space-between; width:100%; padding:13px 15px; border:1px solid #a9c4c0; color:#fff; font-size:.92rem; font-weight:700; transition:background .2s ease,color .2s ease; text-decoration:none; }
+    .pdf-button:hover { color:var(--accent-dark); background:#fff; }
+    
+    /* 數據控制板樣式 */
+    .dashboard { padding:27px; border:1px solid var(--line); background:var(--panel); border-radius:4px; }
+    .dashboard-header { display:flex; justify-content:space-between; align-items:start; gap:18px; margin-bottom:20px; }
+    .dashboard-header p { max-width:440px; margin:0; color:var(--muted); font-size:.9rem; }
+    .review-status { flex:0 0 auto; padding:5px 9px; border:1px solid var(--line); color:var(--muted); font-size:.72rem; }
+    
+    .metrics-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:16px; }
+    .metric-card { padding:18px 20px; background:var(--panel); }
+    .metric-card small { display:block; color:var(--muted); font-size:.82rem; }
+    .metric-card output { display:block; margin-top:4px; color:var(--accent); font:700 1.85rem/1.15 Georgia,serif; }
+    .metric-card label { display:block; margin-top:10px; font-size:.75rem; color:var(--muted); }
+    input[type=range] { width:100%; accent-color:var(--accent); cursor:pointer; }
+    
+    .dashboard-actions { display:flex; gap:12px; align-items:center; margin-top:22px; flex-wrap:wrap; }
+    .review-button { padding:9px 15px; border:1px solid var(--accent); background:transparent; color:var(--accent); font:700 .82rem/1 inherit; cursor:pointer; border-radius:3px; transition:all .2s; }
+    .review-button:hover,.review-button[aria-pressed="true"] { background:var(--accent); color:#fff; }
+    .review-note { color:var(--muted); font-size:.78rem; }
+    
+    .staircase { display:grid; grid-template-columns:repeat(4,1fr); align-items:end; gap:10px; min-height:350px; }
+    .step { display:flex; flex-direction:column; justify-content:flex-end; min-height:185px; padding:20px; border:1px solid var(--line); background:var(--panel); }
+    .step:nth-child(2) { min-height:235px; } .step:nth-child(3) { min-height:285px; } .step:nth-child(4) { min-height:335px; background:var(--soft); border-color:#cadbd9; }
+    .step time { color:var(--accent); font:700 .73rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.09em; }
+    .step h3 { margin:13px 0 6px; } .step p { margin:0; color:var(--muted); font-size:.85rem; }
+    .step .resource { margin-top:15px; font-size:.76rem; color:#53636b; }
+    .service-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; }
+    .service-card { padding:26px; border:1px solid var(--line); background:var(--panel); }
+    .service-card .num { color:var(--accent); font:700 .75rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.1em; }
+    .service-card h3 { margin-top:17px; } .service-card p { margin-bottom:0; color:var(--muted); font-size:.9rem; }
+    .campus { margin-top:22px; padding:30px; background:var(--warm); }
+    .campus-grid { display:grid; grid-template-columns:1fr 1fr; gap:34px; }
+    .campus p { margin-bottom:0; color:#5f625f; }
+    .closing { padding:90px 0; text-align:center; background:var(--accent-dark); color:#fff; }
+    .closing h2 { max-width:730px; margin:0 auto 14px; color:#fff; font-size:clamp(1.9rem,4vw,3rem); }
+    .closing p { max-width:630px; margin:0 auto; color:#c8d9d7; }
+    footer { padding:20px 0; color:var(--muted); font-size:.77rem; text-align:center; }
+    
+    @media (max-width:800px) { 
+      nav { height:auto; padding:14px 0; flex-direction:column; align-items:flex-start; gap:12px; }
+      nav ul { display:flex; flex-wrap:wrap; gap:12px 18px; font-size:0.85rem; }
+      .hero,.university-grid,.dashboard-layout { grid-template-columns:1fr; gap:30px; } 
+      .control-grid,.reflection-grid { grid-template-columns:1fr; } 
+      .goals { grid-template-columns:1fr 1fr; } 
+      .metrics-grid { grid-template-columns:1fr; }
+      .staircase { grid-template-columns:1fr; min-height:0; } 
+      .step,.step:nth-child(n) { min-height:0; } 
+      .service-grid { grid-template-columns:1fr; } 
+      .hero { padding:57px 0; } 
+    }
+    @media (max-width:560px) { 
+      .wrap { width:min(100% - 28px,1100px); } 
+      section { padding:54px 0; } 
+      .section-head,.dashboard-header,.campus-grid { display:block; } 
+      .section-intro { margin-top:12px; } 
+      .goals { grid-template-columns:1fr; } 
+      .dashboard-actions { align-items:flex-start; flex-direction:column; } 
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav aria-label="主要導覽">
+      <a class="brand" href="#top">我的大學生涯</a>
+      <ul>
+        <li><a href="#control">願景</a></li>
+        <li><a href="#smart">SMART</a></li>
+        <li><a href="#action">行動計畫</a></li>
+        <li><a href="#service">崇基實踐</a></li>
+        <li><a href="study plan.pdf" target="_blank" rel="noopener noreferrer">Study Plan ↗</a></li>
+      </ul>
+    </nav>
+    <main id="top">
+      <header class="hero">
+        <div>
+          <div class="eyebrow">University Growth System · 2026–2030</div>
+          <h1>以理性規劃，為一個值得過的人生預留空間。</h1>
+          <p class="lead">我認為大學不是單純累積學分的四年，而是一段把知識、品格、關係與行動連結起來的經歷。我希望以理性思維管理學習與生活，時刻通過反思校準目標，並保持良好的人際關係管理。</p>
+        </div>
+        <aside class="hero-note"><p>「邏輯為磚，演算為瓦；在數據的洪流中築起知識之塔。暫借仲夏的留白，讓思緒如源碼般重組。」</p><p>個人成長不只追求效率，也在乎能否長久而清醒地前行。</p></aside>
+      </header>
+
+      <section id="control">
+        <div class="section-head"><div><div class="eyebrow">願景</div><h2>我對大學的理解與期望。</h2></div><p class="section-intro">把終點想得足夠遠，把此刻做得足夠實在，使每一個選擇都不讓未來的自己後悔。</p></div>
+        <div class="control-grid">
+          <article class="statement"><span class="label">展望</span><h3>成為能以正向思維與人文關懷解決真實問題的人。</h3><p>我希望未來能把資訊、工程與人的經驗連結起來：在複雜情境中看見結構，在效率之外守住尊重與同理，持續創造對社群有意義的改變。</p></article>
+          <article class="statement mission"><span class="label">使命</span><h3>建立基礎、持續反思、主動服務社會。</h3><p>在大學四年裡，我會穩定補強數理與電腦技能，數據化地管理自己的投入；同時融入校園與社群，在服務學習中感受社會溫度，把所學轉化為可被他人感受的價值。</p></article>
+        </div>
+        <div class="university-grid">
+          <article class="university-copy"><div class="eyebrow">大學教育理念</div><h3>大學————學習如何提出好問題的地方。</h3><p>專業課程讓我獲得方法與能力，而通識、人文與群體生活則提醒我：任何技術都存在於人與社會之中，學習與人相處也是一項重要的事情。大學生不只是受教者，也應是願意追問、願意承擔、願意與他人共建答案的社會公民。</p></article>
+          <div class="idea-list">
+            <div class="idea"><span>01</span><div><h3>知識與社會</h3><p>把資訊系統視為改善生活的工具，而非只為追求更快的技術。</p></div></div>
+            <div class="idea"><span>02</span><div><h3>自由與責任</h3><p>擁有選課與規劃的自由，也要學會為時間、承諾和他人的影響負責。</p></div></div>
+            <div class="idea"><span>03</span><div><h3>能力與品格</h3><p>在建立硬實力的同時，培養傾聽、協作與判斷何謂值得投入的能力。</p></div></div>
+          </div>
+        </div>
+        <div class="reflection-grid">
+          <article class="reflection"><span class="label">反思 01</span><h3>未經反思的人生，值得活嗎？</h3><p>我理解這不是要求每個選擇都要完美，而是提醒自己不把慣性當成答案。定期停下來檢視「我為何這樣做」，能讓目標從外在期待，轉變為自己願意承擔的選擇。</p></article>
+          <article class="reflection"><span class="label">反思 02</span><h3>在情感中，怎樣守住生命的主體性？</h3><p>當注意力、效率與情緒都容易被量化，我會使用數據協助決策，卻不以數據定義自我價值。留給關係、休息與服務的空間，是對快速消耗文化的一種清醒回應。</p></article>
+        </div>
+      </section>
+
+      <section id="smart">
+        <style>
+  .smart-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
+  .smart-card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 32px; transition: all 0.3s ease; }
+  .smart-card:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(52, 94, 99, 0.08); transform: translateY(-2px); }
+  .smart-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; border-bottom: 1px solid var(--line); padding-bottom: 16px; }
+  .smart-letter { font: 700 2.8rem/1 Georgia, serif; color: var(--accent); }
+  .smart-meta { display: flex; flex-direction: column; gap: 6px; }
+  .smart-en { font: 600 0.72rem/1 ui-monospace, SFMono-Regular, monospace; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+  .smart-tc { font: 700 1.1rem/1 inherit; color: var(--ink); margin: 0; }
+  .smart-card p { margin: 0; color: #506069; font-size: 0.92rem; line-height: 1.65; }
+  @media (max-width: 760px) { .smart-grid { grid-template-columns: 1fr; } .smart-card { padding: 24px; } }
+</style>
+
+<div class="section-head">
+  <div>
+    <div class="eyebrow">SMART 目標與生活數據儀表板</div>
+    <h2>把願望拆成可執行、可看見、可回顧的路徑。</h2>
+  </div>
+  <p class="section-intro">目標不是壓力清單，而是一套能幫助我辨識進度、調整資源與肯定成果的工作系統。</p>
+</div>
+
+<div class="smart-grid">
+  <article class="smart-card">
+    <div class="smart-header">
+      <span class="smart-letter">S</span>
+      <div class="smart-meta">
+        <span class="smart-en">Specific · Assignable</span>
+        <h3 class="smart-tc">具體 & 可指派</h3>
+      </div>
+    </div>
+    <p>第一學期聚焦 <strong>ENGG1040</strong>，鞏固數學基礎；把 <strong>CSCI1510</strong> 的預習、練習與複盤任務明確安排於第二學期。</p>
+  </article>
+
+  <article class="smart-card">
+    <div class="smart-header">
+      <span class="smart-letter">M</span>
+      <div class="smart-meta">
+        <span class="smart-en">Measurable · Evaluated</span>
+        <h3 class="smart-tc">可衡量 & 評估</h3>
+      </div>
+    </div>
+    <p>以「每週自主學習時數、完成題目數、課程進度百分比」回答 How much? 與 How many?，避免只用感覺判斷努力。每月記錄一項完成、一次調整與一個感謝，萃取可複用的經驗，讓下一個迭代更有方向。</p>
+  </article>
+
+  <article class="smart-card">
+    <div class="smart-header">
+      <span class="smart-letter">A</span>
+      <div class="smart-meta">
+        <span class="smart-en">Achievable · Realistic</span>
+        <h3 class="smart-tc">可達成 & 實事求是</h3>
+      </div>
+    </div>
+    <p>把系統工程（主修）與電腦科學（輔修）學分平均放入常規學期；暑期留白，讓真正的進展能與身心狀態並存。</p>
+  </article>
+
+  <article class="smart-card">
+    <div class="smart-header">
+      <span class="smart-letter">T</span>
+      <div class="smart-meta">
+        <span class="smart-en">Timely · Tangible</span>
+        <h3 class="smart-tc">有時限 & 具體感知</h3>
+      </div>
+    </div>
+    <p>每一階段都設定日期與可見成果：一份整理筆記、一個能執行的程式，或一次完成後值得記住的校園體驗。每兩週檢視課程負荷、學習方法與休息品質。落後時先找出瓶頸。</p>
+  </article>
+</div>
+        
+        <!-- 儀表板區域：左側 PDF 面板 + 右側可調節互動生活儀表板 -->
+        <div class="dashboard-layout">
+          <aside class="pdf-panel" aria-label="Study Plan PDF">
+            <div>
+              <div class="eyebrow">STUDY PLAN · PDF</div>
+              <h3>Study Plan 修業規劃書</h3>
+              <p>完整整理四年修業策略、常規學期節奏與回顧架構，適合另開視窗閱讀。</p>
+            </div>
+            <a class="pdf-button" href="study plan.pdf" target="_blank" rel="noopener noreferrer">請點擊開啟 Study Plan <span aria-hidden="true">↗</span></a>
+          </aside>
+
+          <div class="dashboard" id="dashboard">
+            <div class="dashboard-header">
+              <div>
+                <h3>每週生活儀表板</h3>
+                <p>這份儀表板不是評分工具，而是溫和的提醒：當某一面向長期失衡時，系統需要被重新調整。拖曳控制列模擬本週狀態。</p>
+              </div>
+              <span class="review-status" id="reviewStatus">待本週回顧</span>
+            </div>
+
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <small>自主學習 </small>
+                <output id="studyOut">12 小時</output>
+                <label>每週時數 <input data-unit="小時" data-target="studyOut" type="range" min="0" max="30" value="12"></label>
+              </div>
+              <div class="metric-card">
+                <small>運動次數 (體能鍛鍊)</small>
+                <output id="exerciseOut">3 次</output>
+                <label>每週次數 <input data-unit="次" data-target="exerciseOut" type="range" min="0" max="7" value="3"></label>
+              </div>
+              <div class="metric-card">
+                <small>社交與書院活動</small>
+                <output id="socialOut">2 次</output>
+                <label>每週次數 <input data-unit="次" data-target="socialOut" type="range" min="0" max="7" value="2"></label>
+              </div>
+              <div class="metric-card">
+                <small>睡眠平均 (身心修復)</small>
+                <output id="sleepOut">7.5 小時</output>
+                <label>每日時數 <input data-unit="小時" data-target="sleepOut" type="range" min="4" max="10" step="0.5" value="7.5"></label>
+              </div>
+            </div>
+
+            <div class="dashboard-actions">
+              <button class="review-button" id="reviewButton" type="button" aria-pressed="false">完成本週回顧</button>
+              <span class="review-note" id="reviewNote">評估：找出一項有效方法與一個下週要調整的地方。</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="action">
+        <div class="section-head"><div><div class="eyebrow">階梯式行動計畫</div><h2>每一階，都是下一步可執行的任務。</h2></div><p class="section-intro">以日期、資源與可能的阻礙預先安排，讓大目標不再只停留在「應該努力」。</p></div>
+        <div class="staircase" aria-label="四階段行動計畫">
+          <article class="step"><time>現在 - 2026.12</time><h3>建立起點</h3><p>完成 ENGG1040 的每週整理與錯題回顧，找出數學基礎的缺口。</p><span class="resource">資源：課堂筆記、助教答疑<br>風險：低估複習所需時間</span></article>
+          <article class="step"><time>2027.01 - 2027.05</time><h3>銜接程式思維</h3><p>按週完成 CSCI1510 的閱讀、練習與小作品，建立除錯紀錄。</p><span class="resource">資源：練習題、同儕討論<br>風險：遇到錯誤便停滯</span></article>
+          <article class="step"><time>2027 - 2028</time><h3>連結跨域應用</h3><p>把資訊系統、系統工程與校園經驗串成專題或服務中的可用工具。</p><span class="resource">資源：導師、團隊合作<br>風險：課業與活動失衡</span></article>
+          <article class="step"><time>畢業前</time><h3>形成個人方法</h3><p>完成能展示能力與價值取向的作品集，並整理一套可持續運行的生活管理模式。</p><span class="resource">資源：作品回饋、定期回顧<br>風險：只求完成，未能整合</span></article>
+        </div>
+      </section>
+
+      <section id="service">
+        <div class="section-head"><div><div class="eyebrow">崇基精神 · 從服務中學習</div><h2>把校園當作練習關係與責任的共同體。</h2></div><p class="section-intro">服務不是履歷上的一欄，而是走出個人視角、理解不同生命處境的機會。</p></div>
+        <div class="service-grid">
+          <article class="service-card"><span class="num">01 / 觀察</span><h3>在崇基地緣中學習傾聽</h3><p>主動認識書院、宿舍與社團的人情網絡，理解一個社群如何以日常的關懷與合作維繫。</p></article>
+          <article class="service-card"><span class="num">02 / 追尋</span><h3>把能力投入服務</h3><p>參與「從服務中學習」的機會，嘗試以資料整理、數碼支援或活動協作回應實際需要。</p></article>
+          <article class="service-card"><span class="num">03 / 反思</span><h3>讓經驗轉為價值</h3><p>每次服務後寫下觀察、感受與下一步，不把幫助他人簡化為成果，而是學習互相成全。</p></article>
+        </div>
+        <div class="campus"><div class="campus-grid"><div><h3>適應校園生活</h3><p>從熟悉地圖、建立作息到加入群體，我會把不確定感視為適應的一部分。大學生活的價值不只在「融入得多快」，也在於是否找到適合自己的節奏與可信任的同行者。</p></div><div><h3>人文精神與價值教育</h3><p>在專業訓練之外，崇基的教育提醒我尊重歷史、文化與人的複雜性。當我設計系統、分析資料或作出選擇時，也會持續追問：這是否讓人活得更有尊嚴、更能彼此理解？</p></div></div></div>
+      </section>
+    </main>
+  </div>
+  <section class="closing"><div class="wrap"><h2>以清楚的方向前行，也保留重新思考的自由。</h2><p>在課業、關係與服務之間建立動態平衡，不斷追求圓滿；每一次回顧，都是讓下一個學期更接近自己的機會，以「不自以爲圓滿」的開放精神迎接未來</p></div></section>
+  <footer>Personal Growth System · Vision, Action, Reflection</footer>
+  <script>
+    // 互動滑桿即時數值聯動
+    document.querySelectorAll('input[type="range"]').forEach(input => {
+      input.addEventListener('input', () => {
+        document.getElementById(input.dataset.target).textContent = `${input.value} ${input.dataset.unit}`;
+      });
+    });
+
+    // 回顧按鈕互動邏輯
+    const reviewButton = document.getElementById('reviewButton');
+    const reviewStatus = document.getElementById('reviewStatus');
+    const reviewNote = document.getElementById('reviewNote');
+    reviewButton.addEventListener('click', () => {
+      const completed = reviewButton.getAttribute('aria-pressed') !== 'true';
+      reviewButton.setAttribute('aria-pressed', completed);
+      reviewButton.textContent = completed ? '已完成本週回顧' : '完成本週回顧';
+      reviewStatus.textContent = completed ? '已記錄回顧' : '待本週回顧';
+      reviewNote.textContent = completed ? '已肯定本週成果；下週從一項最重要的調整開始。' : '評估：找出一項有效方法與一個下週要調整的地方。';
+    });
+  </script>
+</body>
+</html>
